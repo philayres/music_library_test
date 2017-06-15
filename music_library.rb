@@ -37,7 +37,7 @@ class MusicLibrary
 end
 
 library = MusicLibrary.new
-content = open 'https://gist.githubusercontent.com/bendilley/dc6235f315f4409ab2733e90321014be/raw/c8dd2df0e2dc4dbbb83a1454b4b5f07216aadf02/music.csv'
+content = open 'https://gist.githubusercontent.com/bendilley/20dece4cff6bb4fa5eae74f985b13e7d/raw/1094d9e9a2acbcdaab45d8c324f74521d16953a4/the_music.csv'
 CSV.new(content, headers: true).each do |row|
   library.albums << Album.new(row["Album"], row["Artist"], row["Year"].to_i)
 end

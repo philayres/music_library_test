@@ -37,10 +37,15 @@ class MusicLibrary
 end
 
 library = MusicLibrary.new
-content = open 'https://gist.githubusercontent.com/bendilley/20dece4cff6bb4fa5eae74f985b13e7d/raw/1094d9e9a2acbcdaab45d8c324f74521d16953a4/the_music.csv'
+content = open 'the_music.csv'
+#'https://gist.githubusercontent.com/bendilley/20dece4cff6bb4fa5eae74f985b13e7d/raw/1094d9e9a2acbcdaab45d8c324f74521d16953a4/the_music.csv'
 CSV.new(content, headers: true).each do |row|
   library.albums << Album.new(row["Album"], row["Artist"], row["Year"].to_i)
 end
 
 # 🤔 This needs to go faster:
-Benchmark.measure { p library.artist_years }
+res = Benchmark.measure { library.artist_years }
+t = Time.now.utc
+hostname = `hostname`
+File.open("perf.txt", "a"){|f| f.write("#{t} #{hostname} #{res}") }
+

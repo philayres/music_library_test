@@ -44,8 +44,8 @@ CSV.new(content, headers: true).each do |row|
 end
 
 # 🤔 This needs to go faster:
-res = Benchmark.measure { library.artist_years }
+res = Benchmark.measure { p library.artist_years }
 t = Time.now.utc
 hostname = `hostname`
 File.open("perf.txt", "a"){|f| f.write("#{t} #{hostname} #{res}") }
-
+res
